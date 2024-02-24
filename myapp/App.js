@@ -1,20 +1,22 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import * as React from 'react';
+import {Button, Text} from 'react-native';
+import {Drawer} from 'react-native-drawer-layout';
 
-import React from 'react';
+export default function DrawerExample() {
+  const [open, setOpen] = React.useState(false);
 
-import {Text, View} from 'react-native';
-
-function App() {
   return (
-    <View>
-      <Text>Hello World</Text>
-    </View>
+    <Drawer
+      open={open}
+      onOpen={() => setOpen(true)}
+      onClose={() => setOpen(false)}
+      renderDrawerContent={() => {
+        return <Text>Drawer content</Text>;
+      }}>
+      <Button
+        onPress={() => setOpen(prevOpen => !prevOpen)}
+        title={`${open ? 'Close' : 'Open'} drawer`}
+      />
+    </Drawer>
   );
 }
-
-export default App;
